@@ -89,8 +89,8 @@ namespace CarsAPI.Data.Repositories
             var filters = filterBuilder.Empty;
 
             var filterCount = filterBuilder.Where(s => s.Sold == sold) 
-                & filterBuilder.Lte(f => f.CreationDate, dateLt) 
-                & filterBuilder.Gte(f => f.CreationDate, dateGt);
+                & filterBuilder.Lte(f => f.SaleDate, dateLt.AddDays(1)) 
+                & filterBuilder.Gte(f => f.SaleDate, dateGt);
             
             var cars = _cars.Find(filterCount).ToList();
 
@@ -103,8 +103,8 @@ namespace CarsAPI.Data.Repositories
             var filters = filterBuilder.Empty;
 
             var filterCount = filterBuilder.Where(s => s.Sold == true)
-                & filterBuilder.Lte(f => f.CreationDate, dateLt)
-                & filterBuilder.Gte(f => f.CreationDate, dateGt);
+                & filterBuilder.Lte(f => f.SaleDate, dateLt.AddDays(1))
+                & filterBuilder.Gte(f => f.SaleDate, dateGt);
 
             var cars = _cars.Find(filterCount).ToList();
             var calc = cars.Sum(f => f.SoldValue);

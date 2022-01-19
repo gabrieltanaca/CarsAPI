@@ -151,7 +151,7 @@ namespace CarsAPI.Controllers
             var filterSum = _carsRepository.FilterSum(dateGt, dateLt);
 
             string text = "Foram vendidos " + filterCount + " carros, havendo um total de vendas: R$" + filterSum;
-            string datesTimes = ". No periodo de " + dateGt + " && " + dateLt;
+            string datesTimes = ". No periodo de " + dateGt + " && " + dateLt.AddDays(1);
 
             return Ok(text + datesTimes);
         }
